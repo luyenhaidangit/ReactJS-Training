@@ -1,2 +1,2 @@
 # ReactJS-Training
- Learning: ReactJS
+ Learning: Javascript ES6, ReactJs,...
