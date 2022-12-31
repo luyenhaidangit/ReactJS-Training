@@ -7,15 +7,25 @@ class MyComponents extends React.Component{
         age: 21,
     }
 
+    clickButton = ()=>{
+        console.log("ok");
+        console.log(this.state.name);
+        this.setState({
+            name: "luyen hai dang",
+        });
+    }
+
     render(){
         return(
-            <div>
+            <span>
                 {this.state.name}
                 <br></br>
                 {this.state.andress}
                 <br></br>
                 {this.state.age}
-            </div>
+                <br></br>
+                <button onClick={(event)=>{this.clickButton(event)}}>Click me</button>
+            </span>
         );
     }
 }
