@@ -3,13 +3,19 @@ import DisplayInfo from './DisplayInfo';
 import UserInfo from './UserInfo';
 
 class MyComponents extends React.Component{
+    state = {
+        users : [
+            {id:1,name:"Luyen Hai Dang",age:21},
+            {id:2,name:"luyenhaidangit",age:22},
+            {id:3,name:"luyenhaidang",age:23},
+        ]
+    }
     render(){
-        const age = 26;
         return(
             <div>
 
                 <UserInfo></UserInfo>
-                <DisplayInfo name="Luyen Hai Dang" age={age}></DisplayInfo>
+                <DisplayInfo name="Luyen Hai Dang" users={this.state.users}></DisplayInfo>
             </div>
         );
     }
