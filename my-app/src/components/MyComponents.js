@@ -15,6 +15,17 @@ class MyComponents extends React.Component{
         });
     }
 
+    changeInput = (event)=>{
+        this.setState({
+            name: event.target.value,
+        });
+    }
+
+    onSubmitForm = (event)=>{
+        event.preventDefault();
+        console.log(this.state);
+    }
+
     render(){
         return(
             <span>
@@ -24,7 +35,12 @@ class MyComponents extends React.Component{
                 <br></br>
                 {this.state.age}
                 <br></br>
-                <button onClick={(event)=>{this.clickButton(event)}}>Click me</button>
+                <form onSubmit={(event)=>{this.onSubmitForm(event)}}>
+                    Name:
+                    <input onChange={(event)=>{this.changeInput(event)}} type="text"/>
+                    <button onClick={()=>{this.clickButton()}}>Submit</button>
+                </form>
+                
             </span>
         );
     }
