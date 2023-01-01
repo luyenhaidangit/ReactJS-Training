@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import "./App.scss";
 import MyComponents from "./components/MyComponents.js";
 import React from "react";
