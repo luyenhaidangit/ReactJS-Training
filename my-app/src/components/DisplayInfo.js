@@ -14,7 +14,7 @@ class DisplayInfo extends React.Component {
 
   render() {
     const { users } = this.props;
-    console.log(users);
+    console.log(this.props);
     return (
       <div className="display-info">
         <div>
@@ -27,7 +27,8 @@ class DisplayInfo extends React.Component {
             {users.map((user) => {
               return (
                 <div key={user.id} className={user.age > 22 ? "red" : "white"} style={{fontSize:'16px',paddingTop:'4px',}}>
-                  ID:{user.id}--Name:{user.name}--Age:{user.age}
+                  ID:{user.id}--Name:{user.name}--Age:{user.age} 
+                  <button onClick={()=>this.props.HandleDeleteUser(user.id)}>Delete</button>
                 </div>
               );
             })}

@@ -11,6 +11,7 @@ class MyComponents extends React.Component{
         ]
     }
 
+    // Add User
     HandleAddUSer = (newUser) =>{
         console.log(newUser);
         this.setState({
@@ -18,13 +19,22 @@ class MyComponents extends React.Component{
         })
     };
 
+    // Delete User
+    HandleDeleteUser = (idUser) =>{
+        let usersClone = [...this.state.users];
+        usersClone  = usersClone.filter(user => user.id !== idUser);
+        this.setState({
+            users: usersClone,
+        });
+    }
+
     render(){
         console.log(this.state.users);
         return(
             <>
 
                 <AddUserInfo HandleAddUSer={this.HandleAddUSer}></AddUserInfo>
-                <DisplayInfo name="Luyen Hai Dang" users={this.state.users}></DisplayInfo>
+                <DisplayInfo name="Luyen Hai Dang" users={this.state.users} HandleDeleteUser={this.HandleDeleteUser}></DisplayInfo>
             </>
         );
     }
