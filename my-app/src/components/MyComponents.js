@@ -20,11 +20,11 @@ class MyComponents extends React.Component{
 
     render(){
         return(
-            <div>
+            <>
 
                 <AddUserInfo HandleAddUSer={this.HandleAddUSer}></AddUserInfo>
                 <DisplayInfo name="Luyen Hai Dang" users={this.state.users}></DisplayInfo>
-            </div>
+            </>
         );
     }
 }
