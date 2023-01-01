@@ -1,6 +1,6 @@
 import React from 'react';
 
-class UserInfo extends React.Component{
+class AddUserInfo extends React.Component{
     state = {
         name: "luyenhaidangit",
         andress: "hung yen",
@@ -8,10 +8,15 @@ class UserInfo extends React.Component{
     }
 
     clickButton = ()=>{
-        console.log("ok");
-        console.log(this.state.name);
-        this.setState({
-            name: "luyen hai dang",
+        // console.log("ok");
+        // console.log(this.state.name);
+        // this.setState({
+        //     name: "luyen hai dang",
+        // });
+        this.props.HandleAddUSer({
+            id: (Math.floor(Math.random() * 6) + 1)+"-random",
+            name: this.state.name,
+            age: this.state.age,
         });
     }
 
@@ -45,4 +50,4 @@ class UserInfo extends React.Component{
     }
 }
 
-export default UserInfo;
+export default AddUserInfo;
