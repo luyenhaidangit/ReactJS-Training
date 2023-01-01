@@ -28,6 +28,22 @@ class MyComponents extends React.Component{
         });
     }
 
+    //DidMount
+    componentDidMount(){
+        setTimeout(()=>{
+            document.title = "Hello Dang";
+        },2000);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+        console.log("check",prevState,this.state);
+        if(this.state.users!==prevState.user){
+            if(this.state.users.length===5){
+                alert("5 user");
+            }
+        }
+    }
+
     render(){
         console.log(this.state.users);
         return(
