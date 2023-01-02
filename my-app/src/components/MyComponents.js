@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DisplayInfo from "./DisplayInfo.js";
 import AddUserInfo from "./AddUserInfo.js";
 
@@ -63,6 +63,20 @@ const MyComponents = () => {
     { id: 2, name: "luyenhaidangit", age: 22 },
     { id: 3, name: "luyenhaidang", age: 23 },
   ]);
+
+  //useEffect didMount
+  useEffect(() => {
+    console.log("effect")
+    // Update the document title using the browser API
+    setTimeout(()=>{
+        document.title = "DAGStore";
+    },3000);
+  },[]);
+
+  //updateDidMount
+  useEffect(() => {
+    console.log("effect user")
+  },[users]);
 
   //Function
   //Add User
