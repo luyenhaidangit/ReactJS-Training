@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './DisplayInfo.scss'
 
 // class DisplayInfo extends React.Component {
@@ -41,16 +41,23 @@ import './DisplayInfo.scss'
 // }
 
 const DisplayInfo = (props)=>{
+  const [statusUsers,setStatusUSers] = useState(true);
+
   const { users } = props;
+
+  const handleShosHideUsers = ()=>{
+    // alert("ok")
+    setStatusUSers(!statusUsers);
+  }
   return (
     <div className="display-info">
-      {/* <div>
-          <span onClick={()=>{this.hideUser()}}>
-              {this.state.statusUsers === true ? "hide users" : "show users"}
+      <div>
+          <span onClick={()=>{handleShosHideUsers()}}>
+              {statusUsers === true ? "hide users" : "show users"}
           </span>
-      </div> */}
+      </div>
       {
-          true && <div>
+          statusUsers && <div>
           {users.map((user) => {
             return (
               <div key={user.id} className={user.age > 22 ? "red" : "white"} style={{fontSize:'16px',paddingTop:'4px',}}>
