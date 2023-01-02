@@ -62,7 +62,7 @@ const DisplayInfo = (props)=>{
             return (
               <div key={user.id} className={user.age > 22 ? "red" : "white"} style={{fontSize:'16px',paddingTop:'4px',}}>
                 ID:{user.id}--Name:{user.name}--Age:{user.age} 
-                <button onClick={()=>this.props.HandleDeleteUser(user.id)}>Delete</button>
+                <button onClick={()=>props.HandleDeleteUser(user.id)}>Delete</button>
               </div>
             );
           })}
