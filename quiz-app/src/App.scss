@@ -37,3 +37,14 @@
     transform: rotate(360deg);
   }
 }
+
+//Custom
+.App {
+  .header {
+    .nav-link {
+      &.active {
+        color: white;
+      }
+    }
+  }
+}
