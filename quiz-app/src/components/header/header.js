@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="#home">DAGStore</Navbar.Brand>
+                <NavLink to="/" className='navbar-brand'>DAGStore</NavLink>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -21,11 +21,11 @@ const Header = () => {
                     </Nav>
                     <Nav className="ms-auto">
                         <NavDropdown title="Cài đặt" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Trang cá nhân</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
+                            <NavDropdown.Item>Trang cá nhân</NavDropdown.Item>
+                            <NavDropdown.Item>
                                 Đăng nhập
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Đăng xuất</NavDropdown.Item>
+                            <NavDropdown.Item>Đăng xuất</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
