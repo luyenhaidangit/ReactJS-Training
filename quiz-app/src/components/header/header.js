@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -11,9 +12,12 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Trang chủ</Nav.Link>
-                        <Nav.Link href="#user">Người dùng</Nav.Link>
-                        <Nav.Link href="#admin">Quản trị</Nav.Link>
+                        <Link to="/" className='nav-link'>Trang chủ</Link>
+                        <Link to="/user" className='nav-link'>Người dùng</Link>
+                        <Link to="/admin" className='nav-link'>Quản trị</Link>
+                        {/* <Nav.Link href="/">Trang chủ</Nav.Link>
+                        <Nav.Link href="/user">Người dùng</Nav.Link>
+                        <Nav.Link href="/admin">Quản trị</Nav.Link> */}
                     </Nav>
                     <Nav className="ms-auto">
                         <NavDropdown title="Cài đặt" id="basic-nav-dropdown">
