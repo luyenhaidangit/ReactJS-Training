@@ -41,10 +41,24 @@
 //Custom
 .App {
   .header {
-    .nav-link {
-      &.active {
-        color: white;
+    .navbar {
+      z-index: 10;
+      opacity: 0.5;
+
+      .nav-link {
+        z-index: 10;
+
+        &.active {
+          color: white;
+        }
       }
     }
+
   }
+}
+
+video {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
 }
