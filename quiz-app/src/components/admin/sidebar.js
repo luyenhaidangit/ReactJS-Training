@@ -10,7 +10,8 @@ import {
 } from 'react-pro-sidebar';
 
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
-import { GrReactjs } from 'react-icons/gr'
+import { GrReactjs } from 'react-icons/gr';
+import { Link } from 'react-router-dom';
 // import sidebarBg from '../../assets/bg2.jpg';
 
 
@@ -52,15 +53,22 @@ const Sidebar = (props) => {
                             suffix={<span className="badge red">New</span>}
                         >
                             Trang điều khiển
+                            <Link to="/admin"></Link>
                         </MenuItem>
-                        <MenuItem icon={<FaGem />}> Thành phần </MenuItem>
+                        <MenuItem icon={<FaGem />}>
+                            Trang chủ
+                            <Link to="/"></Link>
+                        </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
                             suffix={<span className="badge yellow">3</span>}
                             icon={<FaRegLaughWink />} title='Quản lý'
                         >
-                            <MenuItem>Quản lý user</MenuItem>
+                            <MenuItem>
+                                Quản lý user
+                                <Link to="/admin/manage-user"></Link>
+                            </MenuItem>
                             <MenuItem>Quản lý bài thi</MenuItem>
                             <MenuItem>Quản lý câu hỏi</MenuItem>
                         </SubMenu>
