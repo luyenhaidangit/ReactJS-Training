@@ -10,6 +10,7 @@ import {
 } from 'react-pro-sidebar';
 
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import { GrReactjs } from 'react-icons/gr'
 // import sidebarBg from '../../assets/bg2.jpg';
 
 
@@ -37,7 +38,9 @@ const Sidebar = (props) => {
                             textOverflow: 'ellipsis',
                             whiteSpace: 'nowrap',
                         }}
+                        className='d-flex align-items-center'
                     >
+                        <GrReactjs size={'2rem'} className='text-primary me-2'></GrReactjs>
                         DAGStore
                     </div>
                 </SidebarHeader>
@@ -48,20 +51,19 @@ const Sidebar = (props) => {
                             icon={<FaTachometerAlt />}
                             suffix={<span className="badge red">New</span>}
                         >
-                            dashboard
+                            Trang điều khiển
                         </MenuItem>
-                        <MenuItem icon={<FaGem />}> components </MenuItem>
+                        <MenuItem icon={<FaGem />}> Thành phần </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
                             suffix={<span className="badge yellow">3</span>}
-                            icon={<FaRegLaughWink />}
+                            icon={<FaRegLaughWink />} title='Quản lý'
                         >
-                            <MenuItem> 1</MenuItem>
-                            <MenuItem> 2</MenuItem>
-                            <MenuItem> 3</MenuItem>
+                            <MenuItem>Quản lý user</MenuItem>
+                            <MenuItem>Quản lý bài thi</MenuItem>
+                            <MenuItem>Quản lý câu hỏi</MenuItem>
                         </SubMenu>
-
                     </Menu>
                 </SidebarContent>
 
