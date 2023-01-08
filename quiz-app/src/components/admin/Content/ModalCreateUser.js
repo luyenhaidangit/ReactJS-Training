@@ -1,14 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import "./ModalCreateUser.scss";
 import { BsPlusLg } from 'react-icons/bs';
+import axios from 'axios';
 
-const ModalCreateUser = () => {
-    const [show, setShow] = useState(false);
+const ModalCreateUser = (props) => {
+    const { show, setShow } = props;
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => {
+        setEmail("");
+        setPassword("");
+        setUsername("");
+        setRole("admin");
+        setImage("");
+        setPreviewImage("");
+        setShow(false)
+    };
+
+    const handleOnSubmit = () => {
+        let data = {
+            email: email,
+            password: password,
+            username: username,
+            role: role,
+            image: image,
+        }
+        console.log("ok")
+        axios.post('https://localhost:44396/api/v1/participant/create', data)
+            .then(function (response) {
+                console.log("Thanh cong");
+            })
+            .catch(function (error) {
+                console.log("That bai");
+            });
+    }
+    // const handleShow = () => setShow(true);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,34 +51,44 @@ const ModalCreateUser = () => {
     const handlePreviewImage = (event) => {
         if (!event.target.files || event.target.files.length === 0) {
             setImage("")
-            return;
-        }
-
-        // I've kept this example simple by using the first image instead of multiple
-        setImage(event.target.files[0])
-    }
-
-    // create a preview as a side effect, whenever selected file is changed
-    useEffect(() => {
-        console.log("hii")
-        if (!image) {
             setPreviewImage("")
             return;
         }
-
-        const objectUrl = URL.createObjectURL(image)
+        console.log(event.target.files[0]);
+        // I've kept this example simple by using the first image instead of multiple
+        setImage(event.target.files[0].name)
+        const objectUrl = URL.createObjectURL(event.target.files[0])
         console.log(image)
         setPreviewImage(objectUrl)
+        // return () => URL.revokeObjectURL(objectUrl)
+
+
 
         // free memory when ever this component is unmounted
-        return () => URL.revokeObjectURL(objectUrl)
-    }, [image])
+
+    }
+
+    // create a preview as a side effect, whenever selected file is changed
+    // useEffect(() => {
+    //     console.log("hii")
+    //     if (!image) {
+    //         setPreviewImage("")
+    //         return;
+    //     }
+
+    //     const objectUrl = URL.createObjectURL(image)
+    //     console.log(image)
+    //     setPreviewImage(objectUrl)
+
+    //     // free memory when ever this component is unmounted
+    //     return () => URL.revokeObjectURL(objectUrl)
+    // }, [image])
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            {/* <Button variant="primary" onClick={handleShow}>
                 Launch static backdrop modal
-            </Button>
+            </Button> */}
 
             <Modal
                 show={show}
@@ -93,6 +130,8 @@ const ModalCreateUser = () => {
                         <div className="col-md-12 img-preview d-inline-flex justify-content-center align-items-center">
                             {/* <span>Preview Image</span> */}
                             {image && <img src={previewImage} alt="preview-img" />}
+                            {/* {image && <img src="../../../assets/img/0a435d1641ddf309b273acd0ef4e0684.jpg" alt="preview-img" />} */}
+                            {/* {image && <img src={require('../../../assets/img/' + image)} alt="preview-img" />} */}
                             {/* <img src='https://scontent.fhan8-1.fna.fbcdn.net/v/t39.30808-6/323418857_692851532485714_4452630468141470404_n.jpg?stp=dst-jpg_p843x403&_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=CSYVm_J7daYAX_3bCFl&_nc_ht=scontent.fhan8-1.fna&oh=00_AfDGetiWNr_xj2rTR8Bj_E6Aky1XsnhjLZ1-AfYu9C8wPQ&oe=63BF5E88' style={{ height: "140px", width: "140px" }}></img> */}
                         </div>
                     </form>
@@ -101,7 +140,7 @@ const ModalCreateUser = () => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary">Save</Button>
+                    <Button variant="primary" onClick={() => handleOnSubmit()}>Save</Button>
                 </Modal.Footer>
             </Modal>
         </>
