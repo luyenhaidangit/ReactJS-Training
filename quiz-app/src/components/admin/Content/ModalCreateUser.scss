@@ -1,0 +1,16 @@
+.modal-create-user {
+    .add-new-user__button {
+        gap: 8px;
+    }
+
+    .img-preview {
+        height: 150px;
+        border: 1px dashed #ccc;
+        border-radius: 6px;
+
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+}

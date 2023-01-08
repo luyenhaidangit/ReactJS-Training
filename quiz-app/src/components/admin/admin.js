@@ -8,7 +8,6 @@ const Admin = () => {
     const [collapsed, setCollapsed] = useState(false);
 
     //Function
-    console.log("ok")
 
     return (
         <div className="admin d-flex">

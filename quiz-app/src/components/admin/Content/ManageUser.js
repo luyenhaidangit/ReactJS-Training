@@ -2,15 +2,15 @@ import ModalCreateUser from "./ModalCreateUser";
 
 const ManageUser = () => {
     return (
-        <div classNameName="manage-user">
-            <div classNameName="manage-user__header">
+        <div className="manage-user">
+            <div className="manage-user__header">
                 Manage User
             </div>
-            <div classNameName="manage-user__body">
-                <div classNameName="button">
-                    <button classNameName="btn btn-primary">Add User</button>
+            <div className="manage-user__body">
+                <div className="button">
+                    {/* <button className="btn btn-primary">Add User</button> */}
                 </div>
-                <div classNameName="table">
+                <div className="table">
                     <ModalCreateUser></ModalCreateUser>
                 </div>
             </div>
