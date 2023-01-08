@@ -9,7 +9,7 @@ import {
     SidebarContent,
 } from 'react-pro-sidebar';
 
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import { FaTachometerAlt, FaGem, FaGithub, FaRegLaughWink } from 'react-icons/fa';
 import { GrReactjs } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 // import sidebarBg from '../../assets/bg2.jpg';
@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 
 
 const Sidebar = (props) => {
-    const { image, collapsed, toggled, handleToggleSidebar } = props;
+    const { collapsed, toggled, handleToggleSidebar } = props;
     return (
         <>
             <ProSidebar

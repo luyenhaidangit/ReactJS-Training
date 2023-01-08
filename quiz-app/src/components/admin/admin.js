@@ -1,7 +1,7 @@
 import Sidebar from "./sidebar";
 import './admin.scss'
 import { FaBars } from 'react-icons/fa';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 const Admin = () => {

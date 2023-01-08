@@ -92,7 +92,7 @@ const ModalCreateUser = () => {
                         </div>
                         <div className="col-md-12 img-preview d-inline-flex justify-content-center align-items-center">
                             {/* <span>Preview Image</span> */}
-                            {image && <img src={previewImage} />}
+                            {image && <img src={previewImage} alt="preview-img" />}
                             {/* <img src='https://scontent.fhan8-1.fna.fbcdn.net/v/t39.30808-6/323418857_692851532485714_4452630468141470404_n.jpg?stp=dst-jpg_p843x403&_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=CSYVm_J7daYAX_3bCFl&_nc_ht=scontent.fhan8-1.fna&oh=00_AfDGetiWNr_xj2rTR8Bj_E6Aky1XsnhjLZ1-AfYu9C8wPQ&oe=63BF5E88' style={{ height: "140px", width: "140px" }}></img> */}
                         </div>
                     </form>
