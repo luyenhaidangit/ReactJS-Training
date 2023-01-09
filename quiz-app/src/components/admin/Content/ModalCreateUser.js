@@ -1,42 +1,17 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import "./ModalCreateUser.scss";
 import { BsPlusLg } from 'react-icons/bs';
-import axios from 'axios';
+import "./ModalCreateUser.scss";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const ModalCreateUser = (props) => {
+    //Props
     const { show, setShow } = props;
 
-    const handleClose = () => {
-        setEmail("");
-        setPassword("");
-        setUsername("");
-        setRole("admin");
-        setImage("");
-        setPreviewImage("");
-        setShow(false)
-    };
-
-    const handleOnSubmit = () => {
-        let data = {
-            email: email,
-            password: password,
-            username: username,
-            role: role,
-            image: image,
-        }
-        console.log("ok")
-        axios.post('https://localhost:44396/api/v1/participant/create', data)
-            .then(function (response) {
-                console.log("Thanh cong");
-            })
-            .catch(function (error) {
-                console.log("That bai");
-            });
-    }
-    // const handleShow = () => setShow(true);
-
+    //UseState
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -44,10 +19,7 @@ const ModalCreateUser = (props) => {
     const [image, setImage] = useState("");
     const [previewImage, setPreviewImage] = useState("");
 
-    // const handlePreviewImage = (event) => {
-    //     console.log('hihi');
-    // }
-
+    //Preview Image
     const handlePreviewImage = (event) => {
         if (!event.target.files || event.target.files.length === 0) {
             setImage("")
@@ -60,47 +32,69 @@ const ModalCreateUser = (props) => {
         const objectUrl = URL.createObjectURL(event.target.files[0])
         console.log(image)
         setPreviewImage(objectUrl)
-        // return () => URL.revokeObjectURL(objectUrl)
-
-
-
-        // free memory when ever this component is unmounted
-
     }
 
-    // create a preview as a side effect, whenever selected file is changed
-    // useEffect(() => {
-    //     console.log("hii")
-    //     if (!image) {
-    //         setPreviewImage("")
-    //         return;
-    //     }
+    //Close Modal
+    const handleClose = () => {
+        setEmail("");
+        setPassword("");
+        setUsername("");
+        setRole("admin");
+        setImage("");
+        setPreviewImage("");
+        setShow(false)
+    };
 
-    //     const objectUrl = URL.createObjectURL(image)
-    //     console.log(image)
-    //     setPreviewImage(objectUrl)
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
 
-    //     // free memory when ever this component is unmounted
-    //     return () => URL.revokeObjectURL(objectUrl)
-    // }, [image])
+    //Submit
+    const handleOnSubmit = () => {
+        const isValidEmail = validateEmail(email);
+
+        if (!isValidEmail) {
+            toast.error("Email không hợp lệ!", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+            return;
+        }
+
+        if (!password || password.length < 6) {
+            toast.error("Mật khẩu không hợp lệ!", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+            return;
+        }
+
+        //Data
+        let data = {
+            email: email,
+            password: password,
+            username: username,
+            role: role,
+            image: image,
+        }
+
+        //Call API
+        axios.post('https://localhost:44396/api/v1/participant/create', data)
+            .then(function (response) {
+                toast.success("Thêm thông tin thành công");
+                handleClose();
+            })
+            .catch(function (error) {
+                console.log("That bai");
+            });
+    }
 
     return (
         <>
-            {/* <Button variant="primary" onClick={handleShow}>
-                Launch static backdrop modal
-            </Button> */}
-
-            <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-                size="xl"
-                className="modal-create-user"
-            >
+            <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} size="xl" className="modal-create-user">
                 <Modal.Header closeButton>
                     <Modal.Title>Add User</Modal.Title>
                 </Modal.Header>
+
                 <Modal.Body>
                     <form className="row g-3">
                         <div className="col-md-6">
@@ -136,10 +130,12 @@ const ModalCreateUser = (props) => {
                         </div>
                     </form>
                 </Modal.Body>
+
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
+                    {/* <ToastContainer /> */}
                     <Button variant="primary" onClick={() => handleOnSubmit()}>Save</Button>
                 </Modal.Footer>
             </Modal>

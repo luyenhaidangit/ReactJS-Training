@@ -3,10 +3,11 @@ import './admin.scss'
 import { FaBars } from 'react-icons/fa';
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Admin = () => {
     const [collapsed, setCollapsed] = useState(false);
-
     //Function
 
     return (
@@ -20,6 +21,7 @@ const Admin = () => {
                 </div>
                 <div className="admin-body">
                     <Outlet></Outlet>
+                    <ToastContainer />
                 </div>
             </div>
         </div>
