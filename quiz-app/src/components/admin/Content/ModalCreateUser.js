@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { BsPlusLg } from 'react-icons/bs';
 import "./ModalCreateUser.scss";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { postCreateNewUser } from '../../../services/apiService'
 
 const ModalCreateUser = (props) => {
     //Props
@@ -78,13 +78,17 @@ const ModalCreateUser = (props) => {
         }
 
         //Call API
-        axios.post('https://localhost:44396/api/v1/participant/create', data)
+        postCreateNewUser('https://localhost:44396/api/v1/participant/create', data)
             .then(function (response) {
+                console.log(response)
                 toast.success("Thêm thông tin thành công");
                 handleClose();
             })
             .catch(function (error) {
-                console.log("That bai");
+                console.log(error)
+                toast.error("Thất bại!", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
             });
     }
 
