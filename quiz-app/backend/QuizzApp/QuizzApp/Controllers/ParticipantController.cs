@@ -27,18 +27,19 @@ namespace QuizzApp.Controllers
         [HttpPost]
         public ActionResult Create(Participant participant)
         {
-            bool created = false;
-            try
-            {
-                dbContext.Participant.Add(participant);
-                dbContext.SaveChanges();
-                created= true;
-            }
-            catch
-            {
-                created= false;
-            }
-            return Json(created,JsonRequestBehavior.AllowGet);
+            //string created = "Fail";
+            dbContext.Participant.Add(participant);
+            dbContext.SaveChanges();
+            //created = "Success";
+            //try
+            //{
+                
+            //}
+            //catch(e)
+            //{
+            //    created= false;
+            //}
+            return Json("Success",JsonRequestBehavior.AllowGet);
         }
 
         // POST: Participant/Create

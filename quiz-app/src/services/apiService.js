@@ -10,7 +10,12 @@ const postCreateNewUser = (email, password, username, role, image) => {
         image: image,
     }
 
-    return axios.post('api/v1/participant/create', data);
+    return axios.post('api/participant/create', data);
 }
 
-export { postCreateNewUser };
+const getAllUser = () => {
+
+    return axios.post('api/participant/getall');
+}
+
+export { postCreateNewUser, getAllUser };
