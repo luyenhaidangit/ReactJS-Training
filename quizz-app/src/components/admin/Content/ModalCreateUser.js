@@ -85,6 +85,7 @@ const ModalCreateUser = (props) => {
                 console.log(response)
                 toast.success("Thêm thông tin thành công");
                 handleClose();
+                props.fetchUsers();
             })
             .catch(function (error) {
                 console.log(error)

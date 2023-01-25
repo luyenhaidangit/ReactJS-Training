@@ -1,18 +1,7 @@
-import { useEffect, useState } from "react";
-import { getAllUser } from '../../../services/apiService'
+const TableUser = (props) => {
+    const { users } = props;
 
-const TableUser = () => {
-    const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        fetchUsers();
-    }, []);
-
-    const fetchUsers = async () => {
-        let res = await getAllUser();
-        console.log(res)
-        setUsers(res);
-    }
 
     return (
         <>
