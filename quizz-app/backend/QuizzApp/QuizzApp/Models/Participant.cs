@@ -9,7 +9,6 @@ namespace QuizzApp.Models
     [Table("Participant")]
     public partial class Participant
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         [Required]
@@ -20,11 +19,9 @@ namespace QuizzApp.Models
         [StringLength(50)]
         public string password { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string username { get; set; }
-
-        [StringLength(50)]
-        public string role { get; set; }
 
         [StringLength(50)]
         public string image { get; set; }

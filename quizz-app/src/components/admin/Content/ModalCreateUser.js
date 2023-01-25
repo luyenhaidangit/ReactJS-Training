@@ -39,7 +39,7 @@ const ModalCreateUser = (props) => {
         setEmail("");
         setPassword("");
         setUsername("");
-        setRole("admin");
+        setRole("user");
         setImage("");
         setPreviewImage("");
         setShow(false)
@@ -77,8 +77,10 @@ const ModalCreateUser = (props) => {
             image: image,
         }
 
+        console.log(data)
+
         //Call API
-        postCreateNewUser('https://localhost:44396/api/v1/participant/create', data)
+        postCreateNewUser(email, password, username, role, image)
             .then(function (response) {
                 console.log(response)
                 toast.success("Thêm thông tin thành công");

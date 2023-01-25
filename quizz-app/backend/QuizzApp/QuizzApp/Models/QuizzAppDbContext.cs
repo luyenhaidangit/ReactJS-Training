@@ -13,6 +13,7 @@ namespace QuizzApp.Models
         }
 
         public virtual DbSet<Participant> Participant { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

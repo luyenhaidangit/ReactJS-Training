@@ -15,7 +15,7 @@ namespace QuizzApp
 
             routes.MapRoute(
                 name: "Default",
-                url: "api/{controller}/{action}/{id}",
+                url: "api/v1/{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

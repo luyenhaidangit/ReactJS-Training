@@ -16,7 +16,7 @@ const TableUser = () => {
 
     return (
         <>
-            <table className={"table table-hover table-bordered"}>
+            <table className={"table table-hover table-bordered mt-4"}>
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -48,7 +48,7 @@ const TableUser = () => {
                     {
                         users && users.length === 0 &&
                         <tr>
-                            <td colSpan={4} className={"text-center"}>Không có bản ghi</td>
+                            <td colSpan={5} className={"text-center"}>Không có bản ghi</td>
                         </tr>
                     }
                 </tbody>
