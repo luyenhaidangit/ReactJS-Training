@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { BsPlusLg } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { postCreateNewUser } from '../../../services/apiService'
+import { putUpdateNewUser } from '../../../services/apiService'
 import _ from "lodash";
 
 const ModalUpdateUser = (props) => {
@@ -12,6 +12,7 @@ const ModalUpdateUser = (props) => {
     const { show, setShow, dataUpdate } = props;
 
     //UseState
+    const [id, setId] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -20,11 +21,12 @@ const ModalUpdateUser = (props) => {
     const [previewImage, setPreviewImage] = useState("");
 
     useEffect(() => {
-        console.log("check", dataUpdate)
         if (!_.isEmpty(dataUpdate)) {
+            setId(dataUpdate.id);
             setEmail(dataUpdate.email);
             setUsername(dataUpdate.username);
             setRole(dataUpdate.role);
+            setPassword(dataUpdate.password);
         }
     }, [dataUpdate])
 
@@ -51,7 +53,8 @@ const ModalUpdateUser = (props) => {
         setRole("user");
         setImage("");
         setPreviewImage("");
-        setShow(false)
+        setShow(false);
+        props.setDataUpdate({});
     };
 
     function validateEmail(email) {
@@ -60,7 +63,7 @@ const ModalUpdateUser = (props) => {
     }
 
     //Submit
-    const handleOnSubmit = () => {
+    const handleOnSubmit = async () => {
         const isValidEmail = validateEmail(email);
 
         if (!isValidEmail) {
@@ -70,29 +73,32 @@ const ModalUpdateUser = (props) => {
             return;
         }
 
-        if (!password || password.length < 6) {
-            toast.error("Mật khẩu không hợp lệ!", {
-                position: toast.POSITION.TOP_RIGHT
-            });
-            return;
-        }
+        // if (!password || password.length < 6) {
+        //     toast.error("Mật khẩu không hợp lệ!", {
+        //         position: toast.POSITION.TOP_RIGHT
+        //     });
+        //     return;
+        // }
 
         //Data
-        let data = {
-            email: email,
-            password: password,
-            username: username,
-            role: role,
-            image: image,
-        }
+        // let data = {
+        //     id: id,
+        //     email: email,
+        //     password: password,
+        //     username: username,
+        //     role: role,
+        //     image: image,
+        // }
 
-        console.log(data)
+        // console.log(data)
 
+        // let data = await putUpdateNewUser(username, role, image);
+        // console.log(data)
         //Call API
-        postCreateNewUser(email, password, username, role, image)
+        putUpdateNewUser(id, email, password, username, role, image, "")
             .then(function (response) {
                 console.log(response)
-                toast.success("Thêm thông tin thành công");
+                toast.success("Sửa thông tin thành công");
                 handleClose();
                 props.fetchUsers();
             })

@@ -18,4 +18,19 @@ const getAllUser = () => {
     return axios.get('api/v1/participant/getall');
 }
 
-export { postCreateNewUser, getAllUser };
+const putUpdateNewUser = (id, email, password, username, role, image, refresh_token) => {
+    //Data
+    let data = {
+        id: id,
+        email: email,
+        password: password,
+        username: username,
+        role: role,
+        image: image,
+        refresh_token: refresh_token,
+    }
+
+    return axios.put('api/v1/participant/edit', data);
+}
+
+export { postCreateNewUser, getAllUser, putUpdateNewUser };

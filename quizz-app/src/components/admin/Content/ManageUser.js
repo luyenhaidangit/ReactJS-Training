@@ -39,7 +39,7 @@ const ManageUser = () => {
                 <div className="table">
                     <TableUser users={users} handleClickBtnUpdate={handleClickBtnUpdate}></TableUser>
                     <ModalCreateUser show={showModalCreateUser} setShow={setShowModalCreateUser} fetchUsers={fetchUsers}></ModalCreateUser>
-                    <ModalUpdateUser show={showModalUpdateUser} setShow={setShowModalUpdateUser} dataUpdate={dataUpdate}></ModalUpdateUser>
+                    <ModalUpdateUser show={showModalUpdateUser} setShow={setShowModalUpdateUser} dataUpdate={dataUpdate} fetchUsers={fetchUsers} setDataUpdate={setDataUpdate}></ModalUpdateUser>
                 </div>
             </div>
         </div>
