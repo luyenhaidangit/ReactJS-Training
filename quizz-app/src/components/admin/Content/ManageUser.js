@@ -3,15 +3,23 @@ import "./ManageUser.scss";
 import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import { getAllUser } from '../../../services/apiService'
+import ModalUpdateUser from "./ModalUpdateUser";
 
 const ManageUser = () => {
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
+    const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
+    const [dataUpdate, setDataUpdate] = useState({});
 
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
         fetchUsers();
     }, []);
+
+    const handleClickBtnUpdate = (user) => {
+        setShowModalUpdateUser(true);
+        setDataUpdate(user);
+    }
 
     const fetchUsers = async () => {
         let res = await getAllUser();
@@ -27,10 +35,11 @@ const ManageUser = () => {
             <div className="manage-user__body">
                 <div className="button">
                     <button className="btn btn-primary" onClick={() => { setShowModalCreateUser(true) }}>Add User</button>
-                    <ModalCreateUser show={showModalCreateUser} setShow={setShowModalCreateUser} fetchUsers={fetchUsers}></ModalCreateUser>
                 </div>
                 <div className="table">
-                    <TableUser users={users}></TableUser>
+                    <TableUser users={users} handleClickBtnUpdate={handleClickBtnUpdate}></TableUser>
+                    <ModalCreateUser show={showModalCreateUser} setShow={setShowModalCreateUser} fetchUsers={fetchUsers}></ModalCreateUser>
+                    <ModalUpdateUser show={showModalUpdateUser} setShow={setShowModalUpdateUser} dataUpdate={dataUpdate}></ModalUpdateUser>
                 </div>
             </div>
         </div>

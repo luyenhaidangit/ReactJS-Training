@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { BsPlusLg } from 'react-icons/bs';
-import "./ModalCreateUser.scss";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { postCreateNewUser } from '../../../services/apiService'
+import _ from "lodash";
 
-const ModalCreateUser = (props) => {
+const ModalUpdateUser = (props) => {
     //Props
-    const { show, setShow } = props;
+    const { show, setShow, dataUpdate } = props;
 
     //UseState
     const [email, setEmail] = useState("");
@@ -18,6 +18,15 @@ const ModalCreateUser = (props) => {
     const [role, setRole] = useState("user");
     const [image, setImage] = useState("");
     const [previewImage, setPreviewImage] = useState("");
+
+    useEffect(() => {
+        console.log("check", dataUpdate)
+        if (!_.isEmpty(dataUpdate)) {
+            setEmail(dataUpdate.email);
+            setUsername(dataUpdate.username);
+            setRole(dataUpdate.role);
+        }
+    }, [dataUpdate])
 
     //Preview Image
     const handlePreviewImage = (event) => {
@@ -28,7 +37,7 @@ const ModalCreateUser = (props) => {
         }
         console.log(event.target.files[0]);
         // I've kept this example simple by using the first image instead of multiple
-        setImage("../../../assets/img/" + event.target.files[0].name)
+        setImage(event.target.files[0].name)
         const objectUrl = URL.createObjectURL(event.target.files[0])
         console.log(image)
         setPreviewImage(objectUrl)
@@ -99,18 +108,18 @@ const ModalCreateUser = (props) => {
         <>
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} size="xl" className="modal-create-user">
                 <Modal.Header closeButton>
-                    <Modal.Title>Add User</Modal.Title>
+                    <Modal.Title>Update User</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
                     <form className="row g-3">
                         <div className="col-md-6">
                             <label className="form-label">Email</label>
-                            <input type="email" className="form-control" value={email} onChange={(event) => { setEmail(event.target.value) }} />
+                            <input disabled type="email" className="form-control" value={email} onChange={(event) => { setEmail(event.target.value) }} />
                         </div>
                         <div className="col-md-6">
                             <label className="form-label">Password</label>
-                            <input type="password" className="form-control" value={password} onChange={(event) => { setPassword(event.target.value) }} />
+                            <input disabled type="password" className="form-control" value={password} onChange={(event) => { setPassword(event.target.value) }} />
                         </div>
                         <div className="col-md-6">
                             <label className="form-label">Username</label>
@@ -132,8 +141,7 @@ const ModalCreateUser = (props) => {
                             {/* <span>Preview Image</span> */}
                             {image && <img src={previewImage} alt="preview-img" />}
                             {/* {image && <img src="../../../assets/img/0a435d1641ddf309b273acd0ef4e0684.jpg" alt="preview-img" />} */}
-                            {/* {image && <img src={require('../../../assets/img/0a435d1641ddf309b273acd0ef4e0684.jpg')} alt="preview-img" />} */}
-                            {/* {image && <img src={require(image)} alt="preview-img" />} */}
+                            {/* {image && <img src={require('../../../assets/img/' + image)} alt="preview-img" />} */}
                             {/* <img src='https://scontent.fhan8-1.fna.fbcdn.net/v/t39.30808-6/323418857_692851532485714_4452630468141470404_n.jpg?stp=dst-jpg_p843x403&_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=CSYVm_J7daYAX_3bCFl&_nc_ht=scontent.fhan8-1.fna&oh=00_AfDGetiWNr_xj2rTR8Bj_E6Aky1XsnhjLZ1-AfYu9C8wPQ&oe=63BF5E88' style={{ height: "140px", width: "140px" }}></img> */}
                         </div>
                     </form>
@@ -151,4 +159,4 @@ const ModalCreateUser = (props) => {
     );
 }
 
-export default ModalCreateUser;
+export default ModalUpdateUser;
