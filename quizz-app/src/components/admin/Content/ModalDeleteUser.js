@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { BsPlusLg } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { putUpdateNewUser } from '../../../services/apiService'
-import _ from "lodash";
+import { deleteUser } from '../../../services/apiService'
 
 const ModalDeleteUser = (props) => {
     //Props
@@ -37,7 +34,20 @@ const ModalDeleteUser = (props) => {
     };
 
     const handleOnSubmitDeleteUser = () => {
-        alert("Delete")
+        //Call API
+        deleteUser(dataUpdate.id)
+            .then(function (response) {
+                console.log(response)
+                toast.success("Xoa thông tin thành công");
+                handleClose();
+                props.fetchUsers();
+            })
+            .catch(function (error) {
+                console.log(error)
+                toast.error("Thất bại!", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            });
     }
 
     return (

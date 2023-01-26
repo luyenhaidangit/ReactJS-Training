@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { BsPlusLg } from 'react-icons/bs';
-import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import _ from "lodash";
 
@@ -11,7 +10,7 @@ const ModalViewUser = (props) => {
     const { show, setShow, dataUpdate } = props;
 
     //UseState
-    const [id, setId] = useState("");
+    // const [id, setId] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -21,7 +20,7 @@ const ModalViewUser = (props) => {
 
     useEffect(() => {
         if (!_.isEmpty(dataUpdate)) {
-            setId(dataUpdate.id);
+            // setId(dataUpdate.id);
             setEmail(dataUpdate.email);
             setUsername(dataUpdate.username);
             setRole(dataUpdate.role);
