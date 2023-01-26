@@ -38,4 +38,8 @@ const putUpdateNewUser = (id, email, password, username, role, image, refresh_to
     return axios.put('api/v1/participant/edit', data);
 }
 
-export { postCreateNewUser, getAllUser, putUpdateNewUser, deleteUser };
+const getUsersWithPanigate = (page, limit) => {
+    return axios.get(`api/v1/participant/get?page=${page}&limit=${limit}`);
+}
+
+export { postCreateNewUser, getAllUser, putUpdateNewUser, deleteUser, getUsersWithPanigate };

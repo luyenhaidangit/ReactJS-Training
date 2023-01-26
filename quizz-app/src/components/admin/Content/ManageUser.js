@@ -1,23 +1,26 @@
 import ModalCreateUser from "./ModalCreateUser";
 import "./ManageUser.scss";
-import TableUser from "./TableUser";
+// import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
-import { getAllUser } from '../../../services/apiService'
+import { getAllUser, getUsersWithPanigate } from '../../../services/apiService'
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
+import TableUserPanigate from "./TableUserPanigate";
 
 const ManageUser = () => {
+    const LIMIT_USER = 2;
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [showModalViewUser, setShowModalViewUser] = useState(false);
     const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
+    const [pageCount, setPageCount] = useState(0);
 
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetchUsers();
+        fetchUsersWithPanigate(1);
     }, []);
 
     const handleClickBtnUpdate = (user) => {
@@ -33,6 +36,13 @@ const ManageUser = () => {
     const handleClickBtnDelete = (user) => {
         setShowModalDeleteUser(true);
         setDataUpdate(user);
+    }
+
+    const fetchUsersWithPanigate = async (page) => {
+        let res = await getUsersWithPanigate(page, LIMIT_USER);
+        console.log(res)
+        setUsers(res.participants);
+        setPageCount(res.totalPage);
     }
 
     const fetchUsers = async () => {
@@ -51,7 +61,8 @@ const ManageUser = () => {
                     <button className="btn btn-primary" onClick={() => { setShowModalCreateUser(true) }}>Add User</button>
                 </div>
                 <div className="table">
-                    <TableUser users={users} handleClickBtnUpdate={handleClickBtnUpdate} handleClickBtnView={handleClickBtnView} handleClickBtnDelete={handleClickBtnDelete}></TableUser>
+                    {/* <TableUser users={users} handleClickBtnUpdate={handleClickBtnUpdate} handleClickBtnView={handleClickBtnView} handleClickBtnDelete={handleClickBtnDelete}></TableUser> */}
+                    <TableUserPanigate pageCount={pageCount} fetchUsersWithPanigate={fetchUsersWithPanigate} users={users} handleClickBtnUpdate={handleClickBtnUpdate} handleClickBtnView={handleClickBtnView} handleClickBtnDelete={handleClickBtnDelete}></TableUserPanigate>
                     <ModalCreateUser show={showModalCreateUser} setShow={setShowModalCreateUser} fetchUsers={fetchUsers}></ModalCreateUser>
                     <ModalUpdateUser show={showModalUpdateUser} setShow={setShowModalUpdateUser} dataUpdate={dataUpdate} fetchUsers={fetchUsers} setDataUpdate={setDataUpdate}></ModalUpdateUser>
                     <ModalViewUser show={showModalViewUser} setShow={setShowModalViewUser} dataUpdate={dataUpdate} setDataUpdate={setDataUpdate}></ModalViewUser>
