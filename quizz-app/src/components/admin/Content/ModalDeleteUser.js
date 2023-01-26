@@ -40,7 +40,8 @@ const ModalDeleteUser = (props) => {
                 console.log(response)
                 toast.success("Xoa thông tin thành công");
                 handleClose();
-                props.fetchUsers();
+                props.fetchUsersWithPanigate(1);
+                props.setCurrentPage(1);
             })
             .catch(function (error) {
                 console.log(error)

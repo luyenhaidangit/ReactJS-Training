@@ -100,7 +100,8 @@ const ModalUpdateUser = (props) => {
                 console.log(response)
                 toast.success("Sửa thông tin thành công");
                 handleClose();
-                props.fetchUsers();
+                props.fetchUsersWithPanigate(props.currentPage);
+                // props.setCurrentPage(1);
             })
             .catch(function (error) {
                 console.log(error)

@@ -7,6 +7,7 @@ const TableUserPanigate = (props) => {
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
         console.log(event.selected + 1)
+        props.setCurrentPage(event.selected + 1);
         props.fetchUsersWithPanigate(event.selected + 1);
     };
 
@@ -70,6 +71,7 @@ const TableUserPanigate = (props) => {
                 containerClassName="pagination"
                 activeClassName="active"
                 renderOnZeroPageCount={null}
+                forcePage={props.currentPage - 1}
             />
 
             {/* <PaginatedItems itemsPerPage={4} /> */}

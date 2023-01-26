@@ -85,7 +85,8 @@ const ModalCreateUser = (props) => {
                 console.log(response)
                 toast.success("Thêm thông tin thành công");
                 handleClose();
-                props.fetchUsers();
+                props.fetchUsersWithPanigate(1);
+                props.setCurrentPage(1);
             })
             .catch(function (error) {
                 console.log(error)

@@ -9,13 +9,14 @@ import ModalDeleteUser from "./ModalDeleteUser";
 import TableUserPanigate from "./TableUserPanigate";
 
 const ManageUser = () => {
-    const LIMIT_USER = 2;
+    const LIMIT_USER = 4;
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [showModalViewUser, setShowModalViewUser] = useState(false);
     const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
     const [pageCount, setPageCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const [users, setUsers] = useState([]);
 
@@ -62,11 +63,11 @@ const ManageUser = () => {
                 </div>
                 <div className="table">
                     {/* <TableUser users={users} handleClickBtnUpdate={handleClickBtnUpdate} handleClickBtnView={handleClickBtnView} handleClickBtnDelete={handleClickBtnDelete}></TableUser> */}
-                    <TableUserPanigate pageCount={pageCount} fetchUsersWithPanigate={fetchUsersWithPanigate} users={users} handleClickBtnUpdate={handleClickBtnUpdate} handleClickBtnView={handleClickBtnView} handleClickBtnDelete={handleClickBtnDelete}></TableUserPanigate>
-                    <ModalCreateUser show={showModalCreateUser} setShow={setShowModalCreateUser} fetchUsers={fetchUsers}></ModalCreateUser>
-                    <ModalUpdateUser show={showModalUpdateUser} setShow={setShowModalUpdateUser} dataUpdate={dataUpdate} fetchUsers={fetchUsers} setDataUpdate={setDataUpdate}></ModalUpdateUser>
-                    <ModalViewUser show={showModalViewUser} setShow={setShowModalViewUser} dataUpdate={dataUpdate} setDataUpdate={setDataUpdate}></ModalViewUser>
-                    <ModalDeleteUser show={showModalDeleteUser} setShow={setShowModalDeleteUser} dataUpdate={dataUpdate} fetchUsers={fetchUsers}></ModalDeleteUser>
+                    <TableUserPanigate currentPage={currentPage} setCurrentPage={setCurrentPage} pageCount={pageCount} fetchUsersWithPanigate={fetchUsersWithPanigate} users={users} handleClickBtnUpdate={handleClickBtnUpdate} handleClickBtnView={handleClickBtnView} handleClickBtnDelete={handleClickBtnDelete}></TableUserPanigate>
+                    <ModalCreateUser fetchUsersWithPanigate={fetchUsersWithPanigate} currentPage={currentPage} setCurrentPage={setCurrentPage} show={showModalCreateUser} setShow={setShowModalCreateUser} fetchUsers={fetchUsers}></ModalCreateUser>
+                    <ModalUpdateUser fetchUsersWithPanigate={fetchUsersWithPanigate} currentPage={currentPage} setCurrentPage={setCurrentPage} show={showModalUpdateUser} setShow={setShowModalUpdateUser} dataUpdate={dataUpdate} fetchUsers={fetchUsers} setDataUpdate={setDataUpdate}></ModalUpdateUser>
+                    <ModalViewUser fetchUsersWithPanigate={fetchUsersWithPanigate} currentPage={currentPage} setCurrentPage={setCurrentPage} show={showModalViewUser} setShow={setShowModalViewUser} dataUpdate={dataUpdate} setDataUpdate={setDataUpdate}></ModalViewUser>
+                    <ModalDeleteUser fetchUsersWithPanigate={fetchUsersWithPanigate} currentPage={currentPage} setCurrentPage={setCurrentPage} show={showModalDeleteUser} setShow={setShowModalDeleteUser} dataUpdate={dataUpdate} fetchUsers={fetchUsers}></ModalDeleteUser>
                 </div>
             </div>
         </div>
