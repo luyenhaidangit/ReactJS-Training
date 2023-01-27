@@ -1,12 +1,32 @@
 import { useState } from "react";
 import "./Login.scss"
+import { useNavigate } from "react-router-dom";
+import { postLogin } from '../../services/apiService'
+import { toast } from 'react-toastify';
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = () => {
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
         // alert("haha")
+
+        //Validate
+
+        //Submit API
+        let res = await postLogin(email, password);
+        console.log(res)
+        if (res.statusLogin === true) {
+            console.log("hihi")
+            toast.success("Đang nhập thành công");
+            navigate("/")
+        } else {
+            toast.error("Đang nhập không thành công");
+            console.log("haha")
+        }
     }
 
     return (
@@ -24,20 +44,22 @@ const Login = () => {
                 </div>
                 <div className="content-form">
                     <form>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input value={email} onChange={(event) => setEmail(event.target.email)} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="luyenhaidangit@gmail.com" />
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                            <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="luyenhaidangit@gmail.com" />
+                            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input value={password} onChange={(event) => setEmail(event.target.password)} type="password" class="form-control" id="exampleInputPassword1" placeholder="Ít nhất 8 ký tự" />
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                            <input value={password} onChange={(event) => setPassword(event.target.value)} type="password" className="form-control" id="exampleInputPassword1" placeholder="Ít nhất 8 ký tự" />
                         </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <div className="mb-3 form-check">
+                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                            <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
                         </div>
-                        <button onClick={() => handleLogin()} type="button" class="btn btn-dark mt-4 w-100">Đăng nhập</button>
+                        <button onClick={() => handleLogin()} type="button" className="btn btn-dark mt-4 mb-3 w-100">Đăng nhập</button>
+
+                        <span onClick={() => { navigate("/") }} className="back-home text-primary cursor-pointer">Trở về trang chủ</span>
                     </form>
                 </div>
             </div>

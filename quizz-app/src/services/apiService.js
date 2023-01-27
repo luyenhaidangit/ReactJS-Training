@@ -42,4 +42,8 @@ const getUsersWithPanigate = (page, limit) => {
     return axios.get(`api/v1/participant/get?page=${page}&limit=${limit}`);
 }
 
-export { postCreateNewUser, getAllUser, putUpdateNewUser, deleteUser, getUsersWithPanigate };
+const postLogin = (email, password) => {
+    return axios.post(`api/v1/auth/login?email=${email}&password=${password}`);
+}
+
+export { postCreateNewUser, getAllUser, putUpdateNewUser, deleteUser, getUsersWithPanigate, postLogin };

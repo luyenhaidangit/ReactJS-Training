@@ -1,16 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import User from './components/user/user';
-import Admin from './components/admin/admin';
-import Home from './components/home/home';
-import DashBoard from './components/admin/Content/DashBoard';
-import ManageUser from './components/admin/Content/ManageUser';
-import Login from './components/Auth/Login';
+import { BrowserRouter } from "react-router-dom";
+import Layout from './Layout';
+
 
 
 
@@ -18,20 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<Home />}></Route>
-        <Route path="user" element={<User />}></Route>
-      </Route>
-      {/* <Route path="/admin" element={<Admin />}></Route> */}
-      <Route path="/admin" element={<Admin />}>
-        <Route index element={<DashBoard />}></Route>
-        <Route path="manage-user" element={<ManageUser />}></Route>
-      </Route>
-
-      <Route path="/login" element={<Login></Login>}></Route>
-    </Routes>
-
+    <Layout></Layout>
   </BrowserRouter>
   // </React.StrictMode>
 );
