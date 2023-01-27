@@ -3,9 +3,15 @@ import Button from 'react-bootstrap/esm/Button';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate("/login")
+    }
+
     return (
         <Navbar expand="lg">
             <Container>
@@ -21,7 +27,7 @@ const Header = () => {
                         <Nav.Link href="/admin">Quản trị</Nav.Link> */}
                     </Nav>
                     <Nav className="ms-auto">
-                        <Button className='btn btn-login'>Đăng nhập</Button>
+                        <Button className='btn btn-login' onClick={() => handleLogin()}>Đăng nhập</Button>
                         <Button className='btn btn-signup'>Đăng ký</Button>
                         {/* <NavDropdown title="Cài đặt" id="basic-nav-dropdown">
                             <NavDropdown.Item>Trang cá nhân</NavDropdown.Item>
