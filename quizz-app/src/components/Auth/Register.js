@@ -1,46 +1,47 @@
 import { useState } from "react";
-import "./Login.scss"
+import "./Register.scss"
 import { useNavigate } from "react-router-dom";
-import { postLogin } from '../../services/apiService'
+import { postRegister } from '../../services/apiService'
 import { toast } from 'react-toastify';
 
 
-const Login = () => {
+const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
 
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
+    const handleRegister = async () => {
         // alert("haha")
 
         //Validate
 
         //Submit API
-        let res = await postLogin(email, password);
+        let res = await postRegister(email, password, username);
         console.log(res)
-        if (res.statusLogin === true) {
+        if (res.message === "Đăng ký thành công!") {
             console.log("hihi")
-            toast.success("Đang nhập thành công");
-            navigate("/")
+            toast.success(res.message);
+            navigate("/auth/login")
         } else {
-            toast.error("Đang nhập không thành công");
+            toast.error(res.message);
             console.log("haha")
         }
     }
 
     return (
-        <div className="login-container">
+        <div className="register-container">
             <div className="header text-end">
-                Chưa có tài khoản?
-                <span className={"text-primary"} onClick={() => { navigate("/auth/register") }}> Đăng ký</span>
+                Đã có tài khoản?
+                <span className={"text-primary"} onClick={() => { navigate("/auth/login") }}> Đăng nhập</span>
             </div>
             <div className="body d-flex flex-column align-items-center">
                 <div className="title mt-4 mb-2">
                     luyenhaidangit
                 </div>
                 <div className="welcome">
-                    Hello, who is this?
+                    Đăng ký tài khoản?
                 </div>
                 <div className="content-form">
                     <form>
@@ -53,18 +54,22 @@ const Login = () => {
                             <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                             <input value={password} onChange={(event) => setPassword(event.target.value)} type="password" className="form-control" id="exampleInputPassword1" placeholder="Ít nhất 8 ký tự" />
                         </div>
-                        <div className="mb-3 form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                            <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputUsername1" className="form-label">Username</label>
+                            <input value={username} onChange={(event) => setUsername(event.target.value)} type="text" className="form-control" id="exampleInputUsername" placeholder="Tên người dùng" />
                         </div>
-                        <button onClick={() => handleLogin()} type="button" className="btn btn-dark mt-4 mb-3 w-100">Đăng nhập</button>
+
+                        <button onClick={() => handleRegister()} type="button" className="btn btn-dark mt-4 mb-3 w-100">Đăng ký</button>
 
                         <span onClick={() => { navigate("/") }} className="back-home text-primary cursor-pointer">Trở về trang chủ</span>
                     </form>
                 </div>
             </div>
         </div>
+        // <>
+        //     Trang dang kys
+        // </>
     )
 }
 
-export default Login;
+export default Register;

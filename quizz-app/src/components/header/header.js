@@ -9,7 +9,7 @@ const Header = () => {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        navigate("/login")
+        navigate("/auth/login")
     }
 
     return (
@@ -28,7 +28,7 @@ const Header = () => {
                     </Nav>
                     <Nav className="ms-auto">
                         <Button className='btn btn-login' onClick={() => handleLogin()}>Đăng nhập</Button>
-                        <Button className='btn btn-signup'>Đăng ký</Button>
+                        <Button className='btn btn-signup' onClick={() => { navigate("/auth/register") }}>Đăng ký</Button>
                         {/* <NavDropdown title="Cài đặt" id="basic-nav-dropdown">
                             <NavDropdown.Item>Trang cá nhân</NavDropdown.Item>
                             <NavDropdown.Item>
