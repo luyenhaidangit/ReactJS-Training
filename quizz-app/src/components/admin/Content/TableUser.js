@@ -8,7 +8,7 @@ const TableUser = (props) => {
             <table className={"table table-hover table-bordered mt-4"}>
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
@@ -21,7 +21,7 @@ const TableUser = (props) => {
                         users.map((item, index) => {
                             return (
                                 <tr key={`table-user-${index}`}>
-                                    <th scope="row">{index + 1}</th>
+                                    <th scope="row">{item.id}</th>
                                     <td>{item.email}</td>
                                     <td>{item.username}</td>
                                     <td>{item.role}</td>
