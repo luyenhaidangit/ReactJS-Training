@@ -1,6 +1,9 @@
-import videoBackground from '../../assets/video/video-background.mp4'
+import videoBackground from '../../assets/video/video-background.mp4';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+    const account = useSelector(state => state.user.account)
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated)
     return (
         <div className="home">
             <div className='homepage-hero'>

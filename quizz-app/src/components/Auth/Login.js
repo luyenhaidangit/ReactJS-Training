@@ -3,6 +3,8 @@ import "./Login.scss"
 import { useNavigate } from "react-router-dom";
 import { postLogin } from '../../services/apiService'
 import { toast } from 'react-toastify';
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../redux/action/userAction";
 
 
 const Login = () => {
@@ -10,6 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogin = async () => {
         // alert("haha")
@@ -20,7 +23,7 @@ const Login = () => {
         let res = await postLogin(email, password);
         console.log(res)
         if (res.statusLogin === true) {
-            console.log("hihi")
+            dispatch(doLogin(res));
             toast.success("Đang nhập thành công");
             navigate("/")
         } else {
