@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { getQuizzsByUser } from "../../services/apiService";
 import { useSelector } from 'react-redux';
 import Image from "../../assets/img/0a435d1641ddf309b273acd0ef4e0684.jpg"
-import "./ListQuizz.scss"
+import "./ListQuizz.scss";
+import { useNavigate } from "react-router-dom";
 
 const ListQuizz = (props) => {
     const account = useSelector(state => state.user.account);
+    const navigate = useNavigate();
 
 
     const [quizzs, setQuizzs] = useState([]);
@@ -42,7 +44,7 @@ const ListQuizz = (props) => {
                         <div className="card-body">
                             <h5 className="card-title">Quizz {index + 1}</h5>
                             <p className="card-text">{item.description}</p>
-                            <button href="#" className="btn btn-primary">Go somewhere</button>
+                            <button className="btn btn-primary" onClick={() => { navigate(`/quizz/${item.id}`) }}>Go somewhere</button>
                         </div>
                     </div>)
 

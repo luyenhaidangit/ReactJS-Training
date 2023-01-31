@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import User from './components/user/user';
+// import User from './components/user/user';
 import Admin from './components/admin/admin';
 import Home from './components/home/home';
 import DashBoard from './components/admin/Content/DashBoard';
@@ -10,6 +10,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from "./components/Auth/Register";
 import ListQuizz from "./components/user/ListQuizz";
+import DetailQuizz from "./components/user/DetailQuizz";
+import NotFound from "./components/NotFound/NotFound";
 //Luyenhaidang
 
 const Layout = (props) => {
@@ -21,6 +23,7 @@ const Layout = (props) => {
                     <Route path="user" element={<ListQuizz />}></Route>
                 </Route>
                 {/* <Route path="/admin" element={<Admin />}></Route> */}
+                <Route path="/quizz/:id" element={<DetailQuizz />}></Route>
                 <Route path="/admin" element={<Admin />}>
                     <Route index element={<DashBoard />}></Route>
                     <Route path="manage-user" element={<ManageUser />}></Route>
@@ -31,6 +34,7 @@ const Layout = (props) => {
                     <Route path="login" element={<Login />}></Route>
                     <Route path="register" element={<Register />}></Route>
                 </Route>
+                <Route path="*" element={<NotFound />}></Route>
             </Routes>
 
             <ToastContainer />
