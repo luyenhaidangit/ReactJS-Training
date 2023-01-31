@@ -25,8 +25,8 @@ const Login = () => {
 
         //Submit API
         let res = await postLogin(email, password);
-
         console.log(res)
+
         if (res.statusLogin === true) {
             dispatch(doLogin(res));
 
@@ -68,7 +68,7 @@ const Login = () => {
                             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                             <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
                         </div>
-                        <button onClick={() => handleLogin()} type="button" disabled={isLoading} className="btn btn-dark login-button mt-4 mb-3 w-100">{isLoading == true && <ImSpinner10 className="me-2 loaderIcon"></ImSpinner10>}Đăng nhập</button>
+                        <button onClick={() => handleLogin()} type="button" disabled={isLoading} className="btn btn-dark login-button mt-4 mb-3 w-100">{isLoading === true && <ImSpinner10 className="me-2 loaderIcon"></ImSpinner10>}Đăng nhập</button>
 
                         <span onClick={() => { navigate("/") }} className="back-home text-primary cursor-pointer">Trở về trang chủ</span>
                     </form>

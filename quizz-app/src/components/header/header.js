@@ -5,13 +5,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { FETCH_USER_LOGIN_SUCCESS } from '../../redux/action/userAction';
 
 const Header = () => {
     const navigate = useNavigate();
     const account = useSelector(state => state.user.account)
     const isAuthenticated = useSelector(state => state.user.isAuthenticated)
-
+    console.log(account)
+    console.log(isAuthenticated)
     const handleLogin = () => {
         navigate("/auth/login")
     }
@@ -32,7 +32,7 @@ const Header = () => {
                     </Nav>
                     <Nav className="ms-auto">
                         {
-                            isAuthenticated == false ?
+                            isAuthenticated === false ?
                                 <>
                                     <Button className='btn btn-login' onClick={() => handleLogin()}>Đăng nhập</Button>
                                     <Button className='btn btn-signup' onClick={() => { navigate("/auth/register") }}>Đăng ký</Button>

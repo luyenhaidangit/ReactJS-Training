@@ -50,4 +50,8 @@ const postRegister = (email, password, username) => {
     return axios.post(`api/v1/auth/register?email=${email}&password=${password}&username=${username}`);
 }
 
-export { postCreateNewUser, getAllUser, putUpdateNewUser, deleteUser, getUsersWithPanigate, postLogin, postRegister };
+const getQuizzsByUser = (idUser) => {
+    return axios.get(`api/v1/quizz/GetQuizzsByParticipant?idUser=${idUser}`);
+}
+
+export { postCreateNewUser, getAllUser, putUpdateNewUser, deleteUser, getUsersWithPanigate, postLogin, postRegister, getQuizzsByUser };

@@ -9,11 +9,12 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FETCH_USER_LOGIN_SUCCESS:
-            console.log(action)
+            // console.log(action)
             return {
                 ...state,
                 account: {
-                    username: action?.payload?.username,
+                    id: action?.payload?.user?.id,
+                    username: action?.payload?.user?.username,
                 },
                 isAuthenticated: true,
             };
