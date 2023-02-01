@@ -1,0 +1,32 @@
+.quizz-container {
+    gap: 20px;
+    padding: 50px;
+
+    .left-content {
+        width: 70%;
+
+        .title {
+            font-size: 32px;
+            font-weight: 500;
+            padding: 12px 0;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .question {
+            padding: 18px 0;
+
+            .question-title {
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            .question-footer {
+                gap: 15px;
+            }
+        }
+    }
+
+    .right-content {
+        width: 30%;
+    }
+}
