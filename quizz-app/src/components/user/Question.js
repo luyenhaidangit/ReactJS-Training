@@ -18,7 +18,7 @@ const Question = (props) => {
             {
                 Image &&
                 <div className="question-image my-2">
-                    <img src={Image} className="img-fluid"></img>
+                    <img src={Image} className="img-fluid" alt=""></img>
                 </div>
             }
 
@@ -31,9 +31,9 @@ const Question = (props) => {
                     dataQuizz.answers.map((item, index) => {
                         return (
                             <div key={`answer-${index}`} className="a-child">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label className="form-check-label" htmlFor="flexCheckDefault">
                                         {item.description}
                                     </label>
                                 </div>
