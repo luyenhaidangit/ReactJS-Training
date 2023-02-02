@@ -6,11 +6,19 @@ const Question = (props) => {
 
     const { index } = props;
     const { dataQuizz } = props;
-    console.log(index)
+
     console.log(dataQuizz)
 
     if (_.isEmpty(dataQuizz)) {
         return (<></>)
+    }
+
+    const handleCheckBox = (event, questionId, answerId, selec) => {
+        // console.log(event)
+        // console.log(questionId, "va", answerId)
+        props.handleClickAnswer(questionId, answerId)
+        console.log(dataQuizz)
+        // console.log(selec)
     }
 
     return (
@@ -32,7 +40,7 @@ const Question = (props) => {
                         return (
                             <div key={`answer-${index}`} className="a-child">
                                 <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <input onChange={(event) => handleCheckBox(event, dataQuizz.id, item.id, item.isSelected)} checked={item.isSelected} className="form-check-input" type="checkbox" id="flexCheckDefault" />
                                     <label className="form-check-label" htmlFor="flexCheckDefault">
                                         {item.description}
                                     </label>
