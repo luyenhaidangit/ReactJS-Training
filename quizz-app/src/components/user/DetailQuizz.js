@@ -76,6 +76,31 @@ const DetailQuizz = (props) => {
         }
     }
 
+    const handleFinish = () => {
+        let payLoad = {
+            quizzId: quizzDetail.id,
+            answers: [],
+        }
+        if (quizzDetail.questions && quizzDetail.questions.length > 0) {
+            // setIndex(index + 1)
+            quizzDetail.questions.forEach((item) => {
+                let answer = {
+                    questionId: item.id,
+                    userAnswerId: [],
+                }
+                // console.log(item)
+                item.answers.forEach((submitAnswer) => {
+                    if (submitAnswer.isSelected === true) {
+                        answer.userAnswerId.push(submitAnswer.id);
+                    }
+                })
+                payLoad.answers.push(answer);
+                console.log(payLoad)
+            })
+        }
+        // console.log(quizzDetail)
+    }
+
     return (
         <div className="quizz-container d-flex">
             <div className="left-content">
@@ -88,7 +113,7 @@ const DetailQuizz = (props) => {
                 <div className="footer d-flex justify-content-center">
                     <button className="btn btn-secondary" onClick={() => handlePrev()}>Previous</button>
                     <button className="btn btn-primary" onClick={() => handleNext()}>Next</button>
-                    <button className="btn btn-warning" onClick={() => handleNext()}>Finish</button>
+                    <button className="btn btn-warning" onClick={() => handleFinish()}>Finish</button>
                 </div>
 
             </div>
