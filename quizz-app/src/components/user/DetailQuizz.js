@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getQuizzDetail, postSubmitQuizz } from "../../services/apiService";
 import "./DetailQuizz.scss";
 import Question from "./Question";
@@ -9,6 +9,7 @@ import ModalResult from "./ModalResult";
 
 const DetailQuizz = (props) => {
     const params = useParams();
+    const navigate = useNavigate();
     const quizzId = params.id;
 
     const [quizzDetail, setQuizzDetail] = useState({});
@@ -128,6 +129,7 @@ const DetailQuizz = (props) => {
 
             </div>
             <div className="right-content">
+                <button className="btn btn-primary" onClick={() => navigate("/")}>Trở về trang chủ</button>
                 count down
             </div>
             <ModalResult show={isShowModalResult} dataModalResult={dataModalResult} setShow={setShowModalResult}></ModalResult>
