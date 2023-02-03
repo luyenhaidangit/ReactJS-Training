@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getQuizzDetail } from "../../services/apiService";
+import { getQuizzDetail, postSubmitQuizz } from "../../services/apiService";
 import "./DetailQuizz.scss";
 import Question from "./Question";
 import _ from "lodash"
+import ModalResult from "./ModalResult";
 
 
 const DetailQuizz = (props) => {
@@ -14,12 +15,15 @@ const DetailQuizz = (props) => {
     const [dataQuizz, setDataQuizz] = useState([]);
     const [index, setIndex] = useState(0);
 
+    const [isShowModalResult, setShowModalResult] = useState(false);
+    const [dataModalResult, setDataModalResult] = useState({});
+
     useEffect(() => {
         fetchDetailQuizz();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [quizzId]);
 
-    const handleClickAnswer = (questionId, answerId) => {
+    const handleClickAnswer = async (questionId, answerId) => {
         let dataDetailClone = _.cloneDeep(quizzDetail);
         // console.log(dataQuizzClone)
         let question = dataDetailClone.questions.find(item => item.id === questionId);
@@ -44,7 +48,6 @@ const DetailQuizz = (props) => {
             setQuizzDetail(dataDetailClone);
             setDataQuizz(dataDetailClone.questions)
         }
-        console.log(quizzDetail)
     }
 
     const fetchDetailQuizz = async () => {
@@ -76,7 +79,7 @@ const DetailQuizz = (props) => {
         }
     }
 
-    const handleFinish = () => {
+    const handleFinish = async () => {
         let payLoad = {
             quizzId: quizzDetail.id,
             answers: [],
@@ -98,6 +101,13 @@ const DetailQuizz = (props) => {
                 console.log(payLoad)
             })
         }
+        let res = await postSubmitQuizz();
+        console.log(res);
+        if (res) {
+            setDataModalResult(res);
+            setShowModalResult(true);
+        }
+
         // console.log(quizzDetail)
     }
 
@@ -120,6 +130,7 @@ const DetailQuizz = (props) => {
             <div className="right-content">
                 count down
             </div>
+            <ModalResult show={isShowModalResult} dataModalResult={dataModalResult} setShow={setShowModalResult}></ModalResult>
         </div>
     );
 }
